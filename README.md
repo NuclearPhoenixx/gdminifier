@@ -6,9 +6,11 @@ Be aware, though, that this script only minifies by a tiny fraction (YMMV). Main
 
 ## Features
 
+- Automatically works when exporting release/production builds of your game.
 - Minifies all `.json` files by removing all applicable whitespace.
 - Minifies all `.gdshader` files by removing all comments, empty lines and newlines.
 - Minifies all `.tres` files by removing empty lines.
+- Does **not** affect debug builds.
 
 ## Broken Stuff
 
