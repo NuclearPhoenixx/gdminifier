@@ -23,10 +23,8 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 	var _is_debug_build: bool = false
 	var _file_counter: int = 0
 	
-	
 	func _get_name() -> String:
 		return "GD Minifier"
-	
 	
 	func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
 		_is_debug_build = is_debug
@@ -34,10 +32,8 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 		if not is_debug:
 			prints(_get_name(), ": Minifying files for production build...")
 	
-	
 	func _export_end() -> void:
 		prints(_get_name(), ": Minified", _file_counter, "files.")
-	
 	
 	func _export_file(path: String, type: String, features: PackedStringArray) -> void:
 		if _is_debug_build: # Only minify production builds
@@ -109,7 +105,6 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 				#prints("Minified:", path)
 			#return
 
-
 	#func _strip_gd_comments(content: String) -> String:
 		## Remove comments from GDScript content.
 		#var lines: PackedStringArray = content.split("\n")
@@ -166,7 +161,6 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 		#
 		#return "\n".join(stripped_lines)
 
-
 	func _strip_empty_lines(content: String) -> String:
 		var lines: Array = content.split("\n")
 		var stripped_lines: Array = []
@@ -177,7 +171,6 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 		
 		return "\n".join(stripped_lines)
 
-
 	func _minify_json(content: String) -> String:
 		var json: JSON = JSON.new()
 		var result = json.parse(content)
@@ -187,7 +180,6 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 			return ""
 		
 		return json.stringify(json.data)
-
 
 	func _minify_gdshader(content: String) -> String:
 		# Remove all // and /* */ comments and collapse to a single line.
