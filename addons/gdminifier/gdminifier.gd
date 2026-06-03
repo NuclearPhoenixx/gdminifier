@@ -2,6 +2,9 @@
 extends EditorPlugin
 
 
+const RAW_DEV_FORMATS: PackedStringArray = ["blend", "blend1", "psd", "kra", "xcf", "svg", "md", "txt"]
+
+
 var export_plugin: GDMinifierExportPlugin
 
 
@@ -37,6 +40,11 @@ class GDMinifierExportPlugin extends EditorExportPlugin:
 	
 	func _export_file(path: String, type: String, features: PackedStringArray) -> void:
 		if _is_debug_build: # Only minify production builds
+			return
+		
+		# Skip raw data that's made it into the export somehow!
+		if path.get_extension() in RAW_DEV_FORMATS:
+			skip()
 			return
 		
 		# NOTE .gd files don't currently work, and would only get larger anyways due to the engine
